@@ -77,13 +77,13 @@ func TestCLIHandler(t *testing.T) {
 				t.Fatalf("could not get source line")
 			}
 
-			// The call to tt.logf happens one line before
-			// calling runtime.Caller.
+			// The call to logger.LogAttrs happens one
+			// line before calling runtime.Caller.
 			source := fmt.Sprintf("%v:%v", file, line-1)
 
 			want := strings.ReplaceAll(tt.want, "$SOURCE", source)
 			if got := strings.TrimSuffix(buf.String(), "\n"); got != want {
-				t.Errorf("\ngot  %s\nwant %s", got, tt.want)
+				t.Errorf("unexpected log line:\ngot  %s\nwant %s", got, want)
 			}
 		})
 	}
