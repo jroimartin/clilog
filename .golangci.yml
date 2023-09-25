@@ -1,0 +1,28 @@
+linters:
+  enable:
+    - gci
+    - godot
+    - gofmt
+    - misspell
+    - revive
+    - whitespace
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/jroimartin/clilog)
+    custom-order: true
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  exclude-use-default: false
+  exclude-rules:
+    - linters:
+        - errcheck
+      text: 'Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*print(f|ln)?|os\.(Un)?Setenv). is not checked'
+    - linters:
+        - revive
+      text: 'unused-parameter: parameter ''.*'' seems to be unused'
+run:
+  timeout: 5m
